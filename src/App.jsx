@@ -6,17 +6,25 @@ import GameBoard from './Components/gameBoard'
 
 
 function App() {
-  const [scoreList, setScoreList] = useState([0, 1 , 2, 0, 3, 2, 0, 1]);
+  const [scoreList, setScoreList] = useState([0]);
   let bestScore = Math.max(...scoreList);
 
-  const handleSetScoreList = (value) => {
-    setScoreList([...scoreList, value]);
+  const addToCurrScore = () => {
+    setScoreList(prevList => {
+      const newList = [...prevList];
+      newList[newList.length - 1] += 1; // add to the last item
+      return newList;
+    });
+  };
+
+  const handleScoreReset = () => {
+    setScoreList([...scoreList, 0])
   }
   
   return (
     <>
       <Nav score={scoreList[scoreList.length - 1]} bestScore={bestScore} />
-      <GameBoard />
+      <GameBoard onGame={addToCurrScore} onReset={handleScoreReset} currScore={scoreList[scoreList.length - 1]}/>
     </>
   )
 }
