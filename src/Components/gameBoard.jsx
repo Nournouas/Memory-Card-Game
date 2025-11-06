@@ -1,19 +1,8 @@
 import { useState, useEffect, useEffectEvent} from "react"
 import Card from "./card"
 
-//Names of cards
-const names = [
-    "Elliot", 
-    "Mr. Robot", 
-    "Darlene", 
-    "Angela", 
-    "Cisco", 
-    "Tyrell", 
-    "Angela's Dad", 
-    "WhiteRose", 
-    "Dom"]
 //API KEY
-const api = "LHkCFYNRXQBBqcaFt31I73R1o9LQHGnZ"
+const api = "hbyoM8bjShB8yTTMHMs4WXToamP3rA9q"
 
 //shuffle array
 function shuffle(array) {
@@ -47,10 +36,9 @@ let apiLinks = [
     ]
 
 
-
-export default function GameBoard({onGame, onReset, currScore}){
+export default function GameBoard({onGame, onReset, currScore, difficulty, onVictory}){
     //card api links
-    const [cardlinks, setCardLinks] = useState(apiLinks)
+    const [cardlinks, setCardLinks] = useState(apiLinks.slice(0, difficulty))
     //image links
     const [cardImages, setCardImages] = useState([])
     //list of clicked images
@@ -78,10 +66,8 @@ export default function GameBoard({onGame, onReset, currScore}){
             resetGame();
             //setCardLinks([apiLinks]);
         }else{
-            if (currScore + 1 === apiLinks.length){
-                alert("you have won!")
-                playRound(e)
-                resetGame();
+            if (currScore + 1 === cardlinks.length){
+                onVictory();
             }else {
                 playRound(e)
             }
@@ -95,7 +81,6 @@ export default function GameBoard({onGame, onReset, currScore}){
 
         async function fetchCards() {
                 if (ignore) return;
-                console.log("fetching images")
                 const responses = await Promise.all(
                 cardlinks.map(async (gif) => {
                     const res = await fetch(gif);
@@ -118,10 +103,14 @@ export default function GameBoard({onGame, onReset, currScore}){
     }, [cardlinks]);
     
     return (
+        <>
         <div className="gameGrid">
             {
                 cardImages.map((url) => <Card onClick={handleClickImage} key={url} link={url} name={url}/>)
             }
         </div>
+        <button onClick={() => resetGame()}>Reset</button>
+        </>
+        
     )
 }
