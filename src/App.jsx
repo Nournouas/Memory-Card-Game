@@ -10,10 +10,9 @@ function App() {
   const [scoreList, setScoreList] = useState([0]);
   const [difficulty, setDifficulty] = useState(6);
   const [gameMode, setGameMode] = useState(false);
-  let bestScore = Math.max(...scoreList);
-
+  let bestScore = scoreList.length >= 1 ? Math.max(...scoreList) : "";
+  console.log(scoreList)
   const addToCurrScore = () => {
-    console.log("adding")
     setScoreList(prevList => {
       const newList = [...prevList];
       newList[newList.length - 1] += 1; // add to the last item
@@ -34,7 +33,7 @@ function App() {
     addToCurrScore();
     alert("victory!");
     setGameMode(false);
-    handleScoreReset();
+    setScoreList((prev) => [...prev, 0])
   }
 
 

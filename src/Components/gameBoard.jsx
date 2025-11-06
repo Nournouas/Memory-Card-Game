@@ -2,7 +2,7 @@ import { useState, useEffect, useEffectEvent} from "react"
 import Card from "./card"
 
 //API KEY
-const api = "hbyoM8bjShB8yTTMHMs4WXToamP3rA9q"
+const api = "LHkCFYNRXQBBqcaFt31I73R1o9LQHGnZ"
 
 //shuffle array
 function shuffle(array) {
