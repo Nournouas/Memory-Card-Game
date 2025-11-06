@@ -1,4 +1,4 @@
-import { useState, useEffect, useEffectEvent} from "react"
+import { useState, useEffect} from "react"
 import Card from "./card"
 
 //API KEY
@@ -36,8 +36,9 @@ let apiLinks = [
     ]
 
 
-export default function GameBoard({onGame, onReset, currScore, difficulty, onVictory}){
+export default function GameBoard({onGame, onReset, currScore, difficulty, onVictory, onMenu}){
     //card api links
+    // eslint-disable-next-line no-unused-vars
     const [cardlinks, setCardLinks] = useState(apiLinks.slice(0, difficulty))
     //image links
     const [cardImages, setCardImages] = useState([])
@@ -109,7 +110,11 @@ export default function GameBoard({onGame, onReset, currScore, difficulty, onVic
                 cardImages.map((url) => <Card onClick={handleClickImage} key={url} link={url} name={url}/>)
             }
         </div>
-        <button onClick={() => resetGame()}>Reset</button>
+        <div className="controls-container">
+            <button onClick={() => resetGame()}>Reset</button>
+            <button onClick={() => onMenu()}>Change Difficulty</button>
+        </div>
+        
         </>
         
     )

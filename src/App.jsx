@@ -29,6 +29,10 @@ function App() {
     setGameMode(true)
   }
 
+  const handleChangeToMenu = () =>{
+    setGameMode(false);
+  }
+
   const handleVictory = () => {
     addToCurrScore();
     alert("victory!");
@@ -49,7 +53,7 @@ function App() {
   return (
     <>
       <Nav score={scoreList[scoreList.length - 1]} bestScore={bestScore} />
-      <GameBoard onGame={addToCurrScore} onReset={handleScoreReset} currScore={scoreList[scoreList.length - 1]} difficulty={difficulty} onVictory={handleVictory}/>
+      <GameBoard onGame={addToCurrScore} onReset={handleScoreReset} currScore={scoreList[scoreList.length - 1]} difficulty={difficulty} onVictory={handleVictory} onMenu={handleChangeToMenu}/>
     </>
   )
 }
