@@ -64,8 +64,8 @@ export default function GameBoard({onGame, onReset, currScore, difficulty, onVic
     //Runs when an image is clicked
     const handleClickImage = (e) => {
         if (checkIfClicked(e)){
+            alert("You lost! Try again")
             resetGame();
-            //setCardLinks([apiLinks]);
         }else{
             if (currScore + 1 === cardlinks.length){
                 onVictory();

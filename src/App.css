@@ -67,6 +67,7 @@ nav{
   justify-content: center;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  perspective: 1000px;
 }
 
 .game-menu{
