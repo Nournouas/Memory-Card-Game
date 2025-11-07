@@ -70,6 +70,10 @@ nav{
   perspective: 1000px;
 }
 
+.card:hover{
+  
+}
+
 .game-menu{
   display: flex;
   flex-direction: column;
